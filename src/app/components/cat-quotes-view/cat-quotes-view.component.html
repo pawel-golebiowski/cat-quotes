@@ -1,0 +1,19 @@
+<div class="_full">
+  <br />
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="scrollDistance"
+    [infiniteScrollThrottle]="throttle"
+    (scrolled)="onScrollLoadData()"
+    class="cat-quotes-wrapper"
+  >
+    <app-cat-quote
+      *ngFor="let quote of quotesList"
+      [quote]="quote"
+    ></app-cat-quote>
+  </div>
+
+  <div *ngIf="isLoading" class="flex-center loading-spinner">
+    <mat-spinner ></mat-spinner>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.login-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 20rem;
+  height: 30rem;
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  overflow: hidden;
+  & > * {
+    margin-bottom: 0.9rem;
+  }
+}
+
+.login-card-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-wrapper {
+  & > * {
+    margin: 0 1rem;
+  }
+}
+
+.stroked-btn {
+  border-radius: 1rem;
+}
+
+.divider {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.divider .divider-text {
+  background: #fff;
+  padding: 0 10px;
+}
