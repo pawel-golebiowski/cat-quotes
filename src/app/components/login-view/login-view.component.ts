@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-view',
@@ -15,7 +16,11 @@ import { Router } from '@angular/router';
 export class LoginViewComponent {
   loginFormGroup: FormGroup;
 
-  constructor(private fb: FormBuilder, private route: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private _route: Router,
+    private _authService: AuthService
+  ) {
     this.loginFormGroup = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -27,7 +32,8 @@ export class LoginViewComponent {
 
   login() {
     if (this.loginFormGroup.valid) {
-      this.route.navigate(['/quotes']);
+      this._authService.setUserLoggedIn(true);
+      this._route.navigate(['/quotes']);
     }
   }
 }

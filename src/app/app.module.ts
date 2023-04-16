@@ -17,6 +17,8 @@ import { CatQuoteComponent } from './components/cat-quote/cat-quote.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { MatCardModule } from '@angular/material/card';
     MatProgressSpinnerModule,
     InfiniteScrollModule,
     MatCardModule,
+    MatMenuModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

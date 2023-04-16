@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription, delay, finalize } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import {
   CatQuoteData,
   CatQuotesService,
@@ -11,21 +13,24 @@ import {
   styleUrls: ['./cat-quotes-view.component.scss'],
 })
 export class CatQuotesViewComponent implements OnInit, OnDestroy {
-  constructor(private _catQuotesService: CatQuotesService) {}
-
   quotesList: string[] = [];
   subscriptionGroup = new Subscription();
-  readonly sigleRequestQuotesAmount = 20;
+  catQuotes$!: Observable<CatQuoteData>;
+  isLoading = false;
+
+  readonly singleRequestQuotesAmount = 20;
   readonly throttle = 300;
   readonly scrollDistance = 1;
 
-  isLoading = false;
-
-  catQuotes$!: Observable<CatQuoteData>;
+  constructor(
+    private _catQuotesService: CatQuotesService,
+    private _route: Router,
+    private _authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.catQuotes$ = this._catQuotesService
-      .getCatQuotes(this.sigleRequestQuotesAmount)
+      .getCatQuotes(this.singleRequestQuotesAmount)
       .pipe(delay(2000));
 
     this.downloadQuotes();
@@ -49,6 +54,11 @@ export class CatQuotesViewComponent implements OnInit, OnDestroy {
 
   onScrollLoadData() {
     this.downloadQuotes();
+  }
+
+  logout() {
+    this._authService.setUserLoggedIn(false);
+    this._route.navigate(['/login']);
   }
 
   ngOnDestroy(): void {

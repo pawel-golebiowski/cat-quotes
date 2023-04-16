@@ -17,6 +17,7 @@ export class CatQuotesService {
   getCatQuotes(quoteAmount?: number): Observable<CatQuoteData> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('count', quoteAmount ?? 1);
+    
     return this._http.get<CatQuoteData>(QUOTES_URL, { params: queryParams });
   }
 }

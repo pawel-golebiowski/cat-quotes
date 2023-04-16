@@ -1,5 +1,10 @@
 <div class="_full">
-  <br />
+  <mat-toolbar color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Cat Quotes</span>
+  </mat-toolbar>
   <div
     infiniteScroll
     [infiniteScrollDistance]="scrollDistance"
@@ -14,6 +19,10 @@
   </div>
 
   <div *ngIf="isLoading" class="flex-center loading-spinner">
-    <mat-spinner ></mat-spinner>
+    <mat-spinner></mat-spinner>
   </div>
 </div>
+
+<mat-menu #menu="matMenu">
+  <button (click)="logout()" mat-menu-item>Logout</button>
+</mat-menu>
