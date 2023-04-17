@@ -17,16 +17,13 @@ export class LoginViewComponent {
   loginFormGroup: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private _fb: FormBuilder,
     private _route: Router,
     private _authService: AuthService
   ) {
-    this.loginFormGroup = this.fb.group({
+    this.loginFormGroup = this._fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
+      password: new FormControl('', [Validators.required]),
     });
   }
 

@@ -33,10 +33,10 @@ export class CatQuotesViewComponent implements OnInit, OnDestroy {
       .getCatQuotes(this.singleRequestQuotesAmount)
       .pipe(delay(2000));
 
-    this.downloadQuotes();
+    this.fetchQuotes();
   }
 
-  downloadQuotes() {
+  fetchQuotes() {
     this.isLoading = true;
     this.subscriptionGroup.add(
       this.catQuotes$.pipe(finalize(() => (this.isLoading = false))).subscribe({
@@ -53,7 +53,7 @@ export class CatQuotesViewComponent implements OnInit, OnDestroy {
   }
 
   onScrollLoadData() {
-    this.downloadQuotes();
+    this.fetchQuotes();
   }
 
   logout() {
